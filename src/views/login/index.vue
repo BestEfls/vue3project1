@@ -118,7 +118,7 @@ const pointMaterial = new THREE.ShaderMaterial({
 });
 
 // 设置PointsMaterial对象的属性
-pointMaterial.size = 5 // 用于设置物体中顶点的大小默认值为1
+// pointMaterial.size = 5 // 用于设置物体中顶点的大小默认值为1
 pointMaterial.sizeAttenuation = true // 设置点的大小是否会随相机的深度而衰减(仅限透视相机),默认为true
 pointMaterial.transparent = true // 设置材质可以变透明
 pointMaterial.depthWrite = false // 设置渲染材质时是否对深度缓存区的材质有影响,简单来说就是是否会影响它后面物体的渲染,默认为true
@@ -141,17 +141,6 @@ onMounted(()=>{
   renderer.domElement.id = 'three3d'
   box.value?.appendChild(renderer.domElement)
 })
-
-
-// // 创建轨道控制器
-// let controls = new OrbitControls(camera, renderer.domElement)
-// // 设置阻尼
-// controls.enableDamping = true // 这个设置会给控制器带来类似于惯性的重量感,注意要使得这个属性生效还要在动画循环中调用update方法
-
-// let axes = new THREE.AxesHelper(5)
-// scene.add(axes)
-
-
 
 
 // 定义获取比例尺函数的函数

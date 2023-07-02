@@ -62,7 +62,7 @@
               before-upload: 上传文件之前的钩子,参数是上传到文件对象,如果返回false或者失败的Promise则停止上传
               on-success: 	文件上传成功时的钩子
            -->
-          <el-upload class="avatar-uploader" action="/api/admin/product/fileUpload" :show-file-list="false"
+          <el-upload class="avatar-uploader" action="http://sph-api.atguigu.cn/admin/product/fileUpload" :show-file-list="false"
             :on-success="onSuccess" :before-upload="beforeUpload">
             <img v-if="trademarkParams.logoUrl" :src="trademarkParams.logoUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon">

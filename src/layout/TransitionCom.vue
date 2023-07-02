@@ -1,5 +1,5 @@
 <template>
-  <router-view #default="a"><!-- 路由过渡动效 route代表当前路由对象,component代表虚拟dom -->
+  <router-view #default="a"><!-- 路由过渡动效 a.route代表当前路由对象,a.component代表虚拟dom -->
       <transition  enter-active-class="animate__animated animate__backInDown">
         <component :is="a.Component" v-if="flag"></component>
       </transition>

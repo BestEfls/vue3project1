@@ -1,7 +1,7 @@
 <template>
   <div class="logo_container">
     <img :src="getImage(path)" alt="">
-    <p>{{ props.title }}</p>
+    <p>{{ title }}</p>
   </div>
 </template>
 
@@ -9,6 +9,9 @@
 const getImage = (name: string): string => {
     return new URL(`../assets/${name}`, import.meta.url).href
 }
+
+
+
 let props = defineProps({
   path:{
     type:String,
@@ -18,6 +21,10 @@ let props = defineProps({
     type:String,
     default:''
   }
+})
+
+defineExpose({
+  props,
 })
 </script>
 

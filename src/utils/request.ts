@@ -5,7 +5,6 @@ import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user.ts'
 
 
-
 // 第一步:利用axios的create方法创建axios实例
 let request = axios.create({
   baseURL:import.meta.env.VITE_APP_BASE_API,// 设置基础路径

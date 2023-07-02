@@ -1,7 +1,7 @@
 <template>
   <div class="layout_container">
     <div class="layout_slider" :class="{fold:layOutStore.fold}">
-      <logo :title="'东理甄选运营平台'" :path="'logo.png'"></logo>
+      <logo :title="'东理甄选运营平台'" ref="qwe" :path="'logo.png'"></logo>
       <el-scrollbar class="scrollbar">
         <el-menu :collapse="layOutStore.fold" :default-active="route.path" background-color="#001529" text-color="#fff" active-text-color="#95C42A">
           <!-- 
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+
 import Logo from './logo.vue'
 import Menu from './Menu.vue';
 import transitionCom from './TransitionCom.vue';
@@ -34,11 +35,15 @@ import useUserStore from '@/store/modules/user.ts'
 import useLayOutSettingStore from '@/store/modules/setting.ts'
 
 import { useRoute } from 'vue-router';
-
+import { onMounted, ref,getCurrentInstance } from 'vue';
 let userStore = useUserStore()
 let layOutStore = useLayOutSettingStore()
 
 let route = useRoute()
+let qwe = ref()
+
+
+
 
 
 </script>

@@ -149,6 +149,7 @@ onMounted(() => {
     ctx.fillStyle = '#ccc'
     ctx.fill()
     requestAnimationFrame(render)
+    
   }
 
 

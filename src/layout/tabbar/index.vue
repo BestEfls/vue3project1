@@ -131,6 +131,7 @@ const changeDark = ()=>{
 
 const setTheme = ()=>{
   const html = document.documentElement
+  console.log(html.style)
   html.style.setProperty('--el-color-primary',color.value)
   html.style.setProperty('--el-color-primary-light-5',color.value)
   

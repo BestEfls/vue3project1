@@ -33,5 +33,7 @@ app.use(ElementPlus,{
 })
 app.use(router)
 app.use(pinia)
+app.config.globalProperties.$a = '123'
 app.mount('#app')
+
 
