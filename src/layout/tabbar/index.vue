@@ -141,6 +141,7 @@ const setTheme = ()=>{
   let d = parseFloat(c[c.length-1])/2
   let e = `rgba${c[0]},${c[1]},${c[2]},${d})`
   console.log(e);
+  console.log(1);
   
   html.style.setProperty('--el-color-primary-light-3',e)
 }

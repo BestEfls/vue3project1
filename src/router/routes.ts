@@ -1,52 +1,52 @@
-import { RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw } from 'vue-router'
 
-const routes:Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [
   {
-    path:'/',
-    name:'Layout',
-    component:()=>import('@/layout/index.vue'),
-    redirect:'/home',
-    meta:{
-      show:true,
-      icon:'CirclePlus'
+    path: '/',
+    name: 'Layout',
+    component: () => import('@/layout/index.vue'),
+    redirect: '/home',
+    meta: {
+      show: true,
+      icon: 'CirclePlus',
     },
-    children:[
+    children: [
       {
-        path:'/home',
-        name:'Home',
-        component:()=>import('@/views/home/index.vue'),
-        meta:{
-          title:'首页',
-          show:true,
-          icon:'HomeFilled'
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/views/home/index.vue'),
+        meta: {
+          title: '首页',
+          show: true,
+          icon: 'HomeFilled',
         },
       },
-    ]
+    ],
   },
   {
-    path:'/login',
-    name:'Login',
-    component:()=>import('@/views/login/index.vue'),
-    meta:{
-      title:'登录',
-      show:false,
-      icon:'Compass'
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录',
+      show: false,
+      icon: 'Compass',
     },
   },
   {
-    path:'/404',
-    name:'404',
-    component:()=>import('@/views/404/index.vue'),
-    meta:{
-      title:'404',
-      show:false,
-      icon:'StarFilled'
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404/index.vue'),
+    meta: {
+      title: '404',
+      show: false,
+      icon: 'StarFilled',
     },
   },
   {
-    path:'/screen',
-    name:'Screen',
-    component:()=>import('@/views/screen/index.vue'),
+    path: '/screen',
+    name: 'Screen',
+    component: () => import('@/views/screen/index.vue'),
     meta: {
       show: true,
       title: '数据大屏',
@@ -55,103 +55,104 @@ const routes:Array<RouteRecordRaw> = [
   },
 ]
 
-const asyncRoute:Array<RouteRecordRaw> = [
-  { 
-    path:'/acl',
+const asyncRoute: Array<RouteRecordRaw> = [
+  {
+    path: '/acl',
     component: () => import('@/layout/index.vue'),
     name: 'Acl',
-    redirect:'/acl/user',
+    redirect: '/acl/user',
     meta: {
       title: '权限管理',
       icon: 'Lock',
-      show:true
+      show: true,
     },
-    children:[
+    children: [
       {
-        path:'/acl/user',
-        name:'User',
-        component:()=>import('@/views/acl/user/index.vue'),
-        meta:{
-          show:true,
-          title:'用户管理',
-          icon:'User'
-        }
+        path: '/acl/user',
+        name: 'User',
+        component: () => import('@/views/acl/user/index.vue'),
+
+        meta: {
+          show: true,
+          title: '用户管理',
+          icon: 'User',
+        },
       },
       {
-        path:'/acl/role',
-        name:'Role',
-        component:()=>import('@/views/acl/role/index.vue'),
-        meta:{
-          show:true,
-          title:'角色管理',
-          icon:'UserFilled'
-        }
+        path: '/acl/role',
+        name: 'Role',
+        component: () => import('@/views/acl/role/index.vue'),
+        meta: {
+          show: true,
+          title: '角色管理',
+          icon: 'UserFilled',
+        },
       },
       {
-        path:'/acl/permission',
-        name:'Permission',
-        component:()=>import('@/views/acl/permission/index.vue'),
-        meta:{
-          show:true,
-          title:'菜单管理',
-          icon:'Monitor'
-        }
+        path: '/acl/permission',
+        name: 'Permission',
+        component: () => import('@/views/acl/permission/index.vue'),
+        meta: {
+          show: true,
+          title: '菜单管理',
+          icon: 'Monitor',
+        },
       },
-    ]
+    ],
   },
   {
-    path:'/product',
-    name:'Product',
-    component:()=>import('@/layout/index.vue'),
-    meta:{
-      title:'商品管理',
-      icon:'Goods',
-      show:true
+    path: '/product',
+    name: 'Product',
+    component: () => import('@/layout/index.vue'),
+    meta: {
+      title: '商品管理',
+      icon: 'Goods',
+      show: true,
     },
-    redirect:'/product/trademark',
-    children:[
+    redirect: '/product/trademark',
+    children: [
       {
-        path:'/product/trademark',
-        name:'Trademark',
-        component:()=>import('@/views/product/trademark/index.vue'),
-        meta:{
-          title:'品牌管理',
-          icon:'ShoppingCartFull',
-          show:true
-        }
+        path: '/product/trademark',
+        name: 'Trademark',
+        component: () => import('@/views/product/trademark/index.vue'),
+        meta: {
+          title: '品牌管理',
+          icon: 'ShoppingCartFull',
+          show: true,
+        },
       },
       {
-        path:'/product/attr',
-        name:'Attr',
-        component:()=>import('@/views/product/attr/index.vue'),
-        meta:{
-          title:'属性管理',
-          icon:'ChromeFilled',
-          show:true
-        }
+        path: '/product/attr',
+        name: 'Attr',
+        component: () => import('@/views/product/attr/index.vue'),
+        meta: {
+          title: '属性管理',
+          icon: 'ChromeFilled',
+          show: true,
+        },
       },
       {
-        path:'/product/spu',
-        name:'Spu',
-        component:()=>import('@/views/product/spu/index.vue'),
-        meta:{
-          title:'SPU管理',
-          icon:'Calendar',
-          show:true
-        }
+        path: '/product/spu',
+        name: 'Spu',
+        component: () => import('@/views/product/spu/index.vue'),
+        meta: {
+          title: 'SPU管理',
+          icon: 'Calendar',
+          show: true,
+        },
       },
       {
-        path:'/product/sku',
-        name:'Sku',
-        component:()=>import('@/views/product/sku/index.vue'),
-        meta:{
-          title:'SKU管理',
-          icon:'Orange',
-          show:true
-        }
+        path: '/product/sku',
+        name: 'Sku',
+        component: () => import('@/views/product/sku/index.vue'),
+        meta: {
+          title: 'SKU管理',
+          icon: 'Orange',
+          show: true,
+        },
       },
-    ]
-  }
+    ],
+  },
 ]
 
 //任意路由
@@ -172,5 +173,4 @@ const anyRoute = {
   },
 }
 
-
-export { routes,asyncRoute,anyRoute }
+export { routes, asyncRoute, anyRoute }

@@ -5,11 +5,9 @@
 </template>
 
 <script setup lang="ts">
-  import { getCurrentInstance,inject } from 'vue';
-  let instance = getCurrentInstance()
-  console.log(instance);
-  
-</script>
+  import { getCurrentInstance,reactive,ref } from 'vue';
+  import axios from 'axios';
 
+</script>
 <style scoped lang="less">
 </style>

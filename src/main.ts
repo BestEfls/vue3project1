@@ -25,7 +25,12 @@ import './permission.ts'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 // 引入全局指令函数
 import { isHasButton } from './directive/has.ts'
+// const app = createApp({
+//   ...App
+// })
 const app = createApp(App)
+app.config.globalProperties.axios = 'wqe'
+
 isHasButton(app)
 app.use(globalComponents)
 app.use(ElementPlus,{
@@ -35,5 +40,3 @@ app.use(router)
 app.use(pinia)
 app.config.globalProperties.$a = '123'
 app.mount('#app')
-
-

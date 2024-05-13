@@ -1,7 +1,7 @@
 <template>
   <div class="layout_container">
     <div class="layout_slider" :class="{fold:layOutStore.fold}">
-      <logo :title="'东理甄选运营平台'" ref="qwe" :path="'logo.png'"></logo>
+      <logo :title="'广外外卖运营平台'" ref="qwe" :path="'logo.png'"></logo>
       <el-scrollbar class="scrollbar">
         <el-menu :collapse="layOutStore.fold" :default-active="route.path" background-color="#001529" text-color="#fff" active-text-color="#95C42A">
           <!-- 
@@ -35,14 +35,26 @@ import useUserStore from '@/store/modules/user.ts'
 import useLayOutSettingStore from '@/store/modules/setting.ts'
 
 import { useRoute } from 'vue-router';
-import { onMounted, ref,getCurrentInstance } from 'vue';
+import { onMounted, ref,getCurrentInstance, defineComponent, reactive } from 'vue';
 let userStore = useUserStore()
 let layOutStore = useLayOutSettingStore()
 
+type Abc = InstanceType<typeof Logo>
+
+let qwe = ref<Abc>()
+
+let a = ref('Hello World!!!')
+let b = reactive({
+  name:'李银河',
+  age:18
+})
+
+console.log(a);
+console.log(b);
+
+
+
 let route = useRoute()
-let qwe = ref()
-
-
 
 
 
@@ -74,6 +86,7 @@ let qwe = ref()
     height: @base_tabbar_height;
     position: fixed;
     top: 0;
+    z-index: 999;
     left: @base_menu_width;
     box-shadow: 6px 6px 5px #555;
     transition: all 0.3s;

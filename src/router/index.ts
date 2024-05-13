@@ -1,5 +1,7 @@
-import { createRouter,createWebHashHistory } from "vue-router";
+import { createRouter,createWebHashHistory,createWebHistory } from "vue-router";
 import { routes } from "./routes";
+
+
 let router = createRouter({
   history:createWebHashHistory(),
   routes,
@@ -15,4 +17,6 @@ let router = createRouter({
     在vue3中,我们无法在setup中使用组件内守卫beforeRouteEnter,
     如果想要使用可以查看这篇文章:https://blog.csdn.net/qq_17335549/article/details/127942181
 */
+
+
 export default router

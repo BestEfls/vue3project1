@@ -31,6 +31,7 @@ let categoryStore = useCategoryStore()
 
 defineProps(['scene'])
 
+
 // 组件挂载后发送请求,获取一级分类
 onMounted(()=>{
   getC1()

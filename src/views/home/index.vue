@@ -9,16 +9,14 @@
         <div class="username">
           {{ time }},{{ userStore.username }}
           <br>
-          <span>东理甄选运营平台</span>
+          <span>广外外卖运营平台</span>
           <canvas id="c1" width="600" height="400"></canvas>
         </div>
       </el-card>
       <img src="../../assets//forest-7774205_1920.jpg" style="width: 100%;height: 330px;margin-top: 20px;" alt="">
     </el-card>
     <div class="popNotify" v-show="show">
-      <div>学号:2021213147</div>
-      <div>班级:2121805</div>
-      <div>姓名:万腾</div>
+      
     </div>
   </div>
 </template>
@@ -165,8 +163,7 @@ onMounted(() => {
 
 <style scoped lang="less">
   .popNotify{
-    width: 300px;
-    height: 240px;
+
     background-color: white;
     border-radius: 10px;
     position: absolute;

@@ -36,7 +36,7 @@ import useUserStore from '@/store/modules/user.ts'
 // @ts-ignore
 import * as THREE from 'three'
 // @ts-ignore
-import { BufferAttribute, MeshBasicMaterial, PointsMaterial, SphereGeometry } from 'three'
+import { BufferAttribute } from 'three'
 
 // 1.创建场景
 let scene = new THREE.Scene()
@@ -119,7 +119,7 @@ const pointMaterial = new THREE.ShaderMaterial({
 
 // 设置PointsMaterial对象的属性
 // pointMaterial.size = 5 // 用于设置物体中顶点的大小默认值为1
-pointMaterial.sizeAttenuation = true // 设置点的大小是否会随相机的深度而衰减(仅限透视相机),默认为true
+// pointMaterial.sizeAttenuation = true // 设置点的大小是否会随相机的深度而衰减(仅限透视相机),默认为true
 pointMaterial.transparent = true // 设置材质可以变透明
 pointMaterial.depthWrite = false // 设置渲染材质时是否对深度缓存区的材质有影响,简单来说就是是否会影响它后面物体的渲染,默认为true
 // pointMaterial.blending = THREE.AdditiveBlending // 设置在使用此材质时要使用何种混合.默认值为NormalBlending。具体还有哪些值可查看文档
@@ -143,93 +143,93 @@ onMounted(()=>{
 })
 
 
-// 定义获取比例尺函数的函数
-function ScaleLinear(o1:number,min:number,o2:number,max:number){// 参数1:原坐标的最小值;2:要映射到的坐标的最小值;3:原坐标的最大值;4:要映射到的坐标的最大值
-  let k = (max-min)/(o2-o1)
-  let b = max-k*o2
-  return function(x:number){
-    return k*x+b
-  }
-}
-
-let scaleX = ScaleLinear(minx,minAngX,maxx,maxAngX)
-let scaleZ = ScaleLinear(minz,minAngZ,maxz,maxAngZ)
-let scaleSize = ScaleLinear(miny,minSize,maxy,maxSize)
-
-
-// 建立正弦型函数Asin(ωx+φ)
-function SinFn(A:number,Omega:number,phi:number){
-  return function(x:number){
-    return A*Math.sin(Omega*x+phi)
-  }
-}
-let h = false
-//  建立实现波浪的函数
-function updateVertexs(offset=0,Omega=2,n=4){
-  for(let i=0,j=0;i<vertexPositions.length;i+=3,j++){
-    let [posx,posz] = [vertexPositions[i],vertexPositions[i+2]]
-    let angZ = scaleZ(posz)
-    let b = Math.sin(angZ) * n + 2
-    let phi = scaleX(posx)*5+offset
-    let y = SinFn(b,Omega,phi)(angZ)
-
-    vertexSize[j]=scaleSize(y)
-    vertexPositions[i+1]=SinFn(b,Omega,phi)(angZ)
-  }
-}
-
-
-window.addEventListener('mousemove',(e)=>{
-  camera.position.y = 4+(innerHeight/3-e.clientY)/100
-  if(e.movementX>=1){
-    points.rotateY(0.01)
-  }else if(e.movementX<=-1){
-    points.rotateY(-0.01)
-  }
-  
-})
-
-// 监听窗口大小变化,随之更新摄像机和渲染器
-window.addEventListener("resize", () => {
-  // 更新摄像机长宽比
-  camera.aspect = window.innerWidth / window.innerHeight
-  // 更新摄像机投影矩阵
-  camera.updateProjectionMatrix()
-
-  // 更新渲染器创建的canvas的大小
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  // 更新渲染器像素比
-  renderer.setPixelRatio(window.devicePixelRatio)
-})
-console.log(points.geometry.attributes);
-// 创建一个定时器
-let clock = new THREE.Clock()
-let offset = 0
-let n=1
-let con = true
-console.log(Number.EPSILON);
-function render() {
-  let time = clock.getElapsedTime()
-  
-  if(con){
-    n+=0.01
-    offset+=0.04
-    if(n>=3)con=false
-  }else{
-    offset+=0.03
-    n-=0.01
-    if(n<=1)con=true
+  // 定义获取比例尺函数的函数
+  function ScaleLinear(o1:number,min:number,o2:number,max:number){// 参数1:原坐标的最小值;2:要映射到的坐标的最小值;3:原坐标的最大值;4:要映射到的坐标的最大值
+    let k = (max-min)/(o2-o1)
+    let b = max-k*o2
+    return function(x:number){
+      return k*x+b
+    }
   }
 
-  updateVertexs(offset,10,n)
-  points.geometry.attributes.position.needsUpdate = true
-  points.geometry.attributes.size.needsUpdate = true
-  // controls.update()
-  renderer.render(scene, camera)
-  requestAnimationFrame(render)
-}
+  let scaleX = ScaleLinear(minx,minAngX,maxx,maxAngX)
+  let scaleZ = ScaleLinear(minz,minAngZ,maxz,maxAngZ)
+  let scaleSize = ScaleLinear(miny,minSize,maxy,maxSize)
 
-render()
+
+  // 建立正弦型函数Asin(ωx+φ)
+  function SinFn(A:number,Omega:number,phi:number){
+    return function(x:number){
+      return A*Math.sin(Omega*x+phi)
+    }
+  }
+  let h = false
+  //  建立实现波浪的函数
+  function updateVertexs(offset=0,Omega=2,n=4){
+    for(let i=0,j=0;i<vertexPositions.length;i+=3,j++){
+      let [posx,posz] = [vertexPositions[i],vertexPositions[i+2]]
+      let angZ = scaleZ(posz)
+      let b = Math.sin(angZ) * n + 2
+      let phi = scaleX(posx)*5+offset
+      let y = SinFn(b,Omega,phi)(angZ)
+
+      vertexSize[j]=scaleSize(y)
+      vertexPositions[i+1]=SinFn(b,Omega,phi)(angZ)
+    }
+  }
+
+
+  window.addEventListener('mousemove',(e)=>{
+    camera.position.y = 4+(innerHeight/3-e.clientY)/100
+    if(e.movementX>=1){
+      points.rotateY(0.01)
+    }else if(e.movementX<=-1){
+      points.rotateY(-0.01)
+    }
+    
+  })
+
+  // 监听窗口大小变化,随之更新摄像机和渲染器
+  window.addEventListener("resize", () => {
+    // 更新摄像机长宽比
+    camera.aspect = window.innerWidth / window.innerHeight
+    // 更新摄像机投影矩阵
+    camera.updateProjectionMatrix()
+
+    // 更新渲染器创建的canvas的大小
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    // 更新渲染器像素比
+    renderer.setPixelRatio(window.devicePixelRatio)
+  })
+  console.log(points.geometry.attributes);
+  // 创建一个定时器
+  let clock = new THREE.Clock()
+  let offset = 0
+  let n=1
+  let con = true
+  console.log(Number.EPSILON);
+  function render() {
+    let time = clock.getElapsedTime()
+    
+    if(con){
+      n+=0.01
+      offset+=0.04
+      if(n>=3)con=false
+    }else{
+      offset+=0.03
+      n-=0.01
+      if(n<=1)con=true
+    }
+
+    updateVertexs(offset,10,n)
+    points.geometry.attributes.position.needsUpdate = true
+    points.geometry.attributes.size.needsUpdate = true
+    // controls.update()
+    renderer.render(scene, camera)
+    requestAnimationFrame(render)
+  }
+
+  render()
 
 
 
@@ -293,6 +293,7 @@ let useUser = useUserStore()
 let router = useRouter()
 let route = useRoute()
 
+
 const getTime = ():string=>{
   let hours = new Date().getHours()
   if(hours<=9){
@@ -346,10 +347,11 @@ const login = async ()=>{
     width: 40%;
     top: 10vh;
     height: 50vh;
-    border-radius: 10px;
-    box-shadow: 5px 5px 2px #aaa,-5px 5px 2px #aaa,-5px -5px 2px #aaa,5px -5px 2px #aaa;
+    border-radius: 20px;
+    border: 2px solid #a6c1ee;
     padding:40px ;
     &::after{
+      border-radius: 20px;
       width: 100%;
       height: 100%;
       opacity: 0.6;
